@@ -19,16 +19,42 @@ class _QuizScreenState extends State<QuizScreen> {
       backgroundColor: Colors.blueAccent,
       title: Center(child: Text("All the Best",style: GoogleFonts.rye(color: Colors.black,fontWeight: FontWeight.bold),)),
       ),
-      body: ListView(
+      body: Column(
         children: [
           SizedBox(
-            height: height,
-            width: width,
+            height: height*0.3,
+            width: width*095,
             child: Card(
                   elevation: 5,
-                    
+                  child: Center(child: Text('Q1:What are objects in java??')),
             ),
-          )
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Center(
+                child: Card(
+                 child: Text("option 1"),
+                ),
+              ),
+              Card(
+               child: Text("option 2"),
+              ),
+            ],
+          ),
+            Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Card(
+               child: Text("option 1"),
+              ),
+              Card(
+               child: Text("option 2"),
+              ),
+            ],
+          ),
+          
+
         ],
       )
     ,
