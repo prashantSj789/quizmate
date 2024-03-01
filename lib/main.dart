@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/Screens/QuizScreen.dart';
 import 'package:quiz_app/Screens/homeScreen.dart';
 import 'package:quiz_app/Screens/loginscreen.dart';
 import 'package:http/http.dart'as http;
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: 'Flutter Deo',
       
-      home:LoginScreen(),
+      home:QuizScreen(),
     );
   }
 }
