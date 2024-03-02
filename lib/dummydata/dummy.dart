@@ -1,4 +1,4 @@
-var object={
+var object=[
   {
   "Question ID" : "12345",
   "Question" : "What is your name?",
@@ -31,4 +31,4 @@ var object={
   "Option 3" : "August",
   "Option 4" : "None of these",
   },
-};
+];
