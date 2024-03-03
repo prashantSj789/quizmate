@@ -1,7 +1,5 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:quiz_app/Screens/homeScreen.dart';
 import 'package:http/http.dart'as http;
 import 'package:quiz_app/Screens/loginscreen.dart';
 import 'package:quiz_app/api/userapi.dart';
@@ -27,9 +25,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
    }
    
-   TextEditingController usernamecontroller = new TextEditingController();
-   TextEditingController emailcontroller = new TextEditingController();
-   TextEditingController passwordcontroller = new TextEditingController();
+   TextEditingController usernamecontroller = TextEditingController();
+   TextEditingController emailcontroller = TextEditingController();
+   TextEditingController passwordcontroller = TextEditingController();
 
    void registeruser() async{
    if(usernamecontroller.text.isNotEmpty&&emailcontroller.text.isNotEmpty&&passwordcontroller.text.isNotEmpty)
@@ -52,8 +50,8 @@ if (response.statusCode == 200) {
               label: 'Undo',
               onPressed: () {
               },
-            ),content: Center(child: Text("User Created Sucessfully",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),)),),);
-  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LoginScreen()));
+            ),content: const Center(child: Text("User Created Sucessfully",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),)),),);
+  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const LoginScreen()));
 }
 else {
   print(response.reasonPhrase);
@@ -65,7 +63,7 @@ else {
               label: 'Undo',
               onPressed: () {
               },
-            ),content: Center(child: Text("enter your details",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),)),),);
+            ),content: const Center(child: Text("enter your details",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),)),),);
    }
    }
 
@@ -82,27 +80,27 @@ else {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
 
-              SizedBox(height: 120,),
-              Center(
+              const SizedBox(height: 120,),
+              const Center(
               child: Text("Enter your Credentials to register !!",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17,color: Colors.black),),
               ),
-               SizedBox(height: 30,),
+               const SizedBox(height: 30,),
                TextField(controller: usernamecontroller,decoration: InputDecoration(hintText:"user name",border: OutlineInputBorder(
                    borderRadius: BorderRadius.circular(50),
-                 ),hintStyle: TextStyle(color: Colors.white)),),
-                 SizedBox(height: 50,),
+                 ),hintStyle: const TextStyle(color: Colors.white)),),
+                 const SizedBox(height: 50,),
                  TextField(controller: emailcontroller,decoration: InputDecoration(hintText:"email", border: OutlineInputBorder(
                    borderRadius: BorderRadius.circular(50),
-                 ),hintStyle: TextStyle(color: Colors.white)),),
-                 SizedBox(height: 50,),
+                 ),hintStyle: const TextStyle(color: Colors.white)),),
+                 const SizedBox(height: 50,),
                  TextField(obscureText: _ishidden,controller: passwordcontroller,
                   decoration: InputDecoration(hintText:"password",border: OutlineInputBorder(
                    borderRadius: BorderRadius.circular(50),
-                 ),hintStyle: TextStyle(color: Colors.white),suffix: IconButton(icon: Icon(Icons.visibility,),onPressed: toggle,)),),
-                 SizedBox(height: 30,),
+                 ),hintStyle: const TextStyle(color: Colors.white),suffix: IconButton(icon: const Icon(Icons.visibility,),onPressed: toggle,)),),
+                 const SizedBox(height: 30,),
                 
-                 SizedBox(height: 20,),
-                  TextButton(onPressed: (){registeruser();}, child: Text("register now",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black,decoration: TextDecoration.underline),)),
+                 const SizedBox(height: 20,),
+                  TextButton(onPressed: (){registeruser();}, child: const Text("register now",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black,decoration: TextDecoration.underline),)),
 
               ],
             )

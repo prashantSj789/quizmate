@@ -30,22 +30,22 @@ class _CustomQuizScreenState extends State<CustomQuizScreen> {
             ),
                     TextField(decoration: InputDecoration(hintText:"No of Ouestions",border: OutlineInputBorder(
                    borderRadius: BorderRadius.circular(50),
-                 ),hintStyle: TextStyle(color: Colors.white),labelText: "No of Question"),
+                 ),hintStyle: const TextStyle(color: Colors.white),labelText: "No of Question"),
                  ),
-                 SizedBox(height: 50,),
+                 const SizedBox(height: 50,),
                 TextField(decoration: InputDecoration(hintText:"Duration Of Quiz",border: OutlineInputBorder(
                    borderRadius: BorderRadius.circular(50),
-                 ),hintStyle: TextStyle(color: Colors.white),labelText: "Duration Of Quiz")
+                 ),hintStyle: const TextStyle(color: Colors.white),labelText: "Duration Of Quiz")
                  ),
-                 SizedBox(height: 50,),
+                 const SizedBox(height: 50,),
                                  TextField(decoration: InputDecoration(hintText:"Programing Language",border: OutlineInputBorder(
                    borderRadius: BorderRadius.circular(50),
-                 ),hintStyle: TextStyle(color: Colors.white),labelText: "Programing Language")
+                 ),hintStyle: const TextStyle(color: Colors.white),labelText: "Programing Language")
                  ),
-                 SizedBox(height: 30,),
+                 const SizedBox(height: 30,),
                  ElevatedButton(onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>QuizSplashScreen()));
-                 }, child: Text("Generate Quiz"))
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const QuizSplashScreen()));
+                 }, child: const Text("Generate Quiz"))
         ],
       ),
     );
