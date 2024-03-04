@@ -7,8 +7,12 @@ import 'package:quiz_app/models/Question_Paper_model.dart';
 import 'package:quiz_app/repository/Qestion_repo.dart';
 
 class QuizScreen extends StatefulWidget {
-  const QuizScreen({super.key});
+  QuizScreen({super.key,required this.category1,required this.e,required this.m,required this.h});
+  String category1;
 
+  int e;
+  int m;
+  int h;
   @override
   State<QuizScreen> createState() => _QuizScreenState();
 }
@@ -27,12 +31,12 @@ class _QuizScreenState extends State<QuizScreen> {
 
   void callfunction() async {
     print('questions called');
-    QuestionRepository1 repo1 = QuestionRepository1();
+    QuestionRepository repo1 = QuestionRepository();
 
-    response = await repo1.fetchquestion();
+    response = await repo1.fetchquestion(widget.category1,widget.e,widget.m,widget.h);
 
     // print(response);
-    // print(response['questionList'][0]['question']);
+    // print(response['questionlist']);
     setState(() {
       
     });
@@ -64,7 +68,7 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   void nextQuestion() {
-    if (index != list.length - 1) {
+    if (index != 4) {
       setState(() {
         index++;
         toggle = 0;
@@ -106,7 +110,7 @@ class _QuizScreenState extends State<QuizScreen> {
               elevation: 5,
               child: Center(
                   child: Text(
-                response['questionList'][0]["question"],
+                response['questionList'][index]["question"],
                 style: GoogleFonts.merriweather(
                     fontSize: 20, fontWeight: FontWeight.bold),
               )),
@@ -127,10 +131,11 @@ class _QuizScreenState extends State<QuizScreen> {
                     color: toggle == 1 ? Colors.green : Colors.white70,
                     elevation: toggle == 1 ? 30 : 5,
                     child: Center(
-                        child: Text( response['questionList'][0]["options1"],
-                            style: GoogleFonts.merriweather(
-                              fontSize: 15,
-                            ))),
+                      child: Text( response['questionList'][index]["options1"],
+                              style: GoogleFonts.merriweather(
+                                fontSize: 15,
+                              )),
+                    ),
                   ),
                 ),
               ),
@@ -143,7 +148,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     color: toggle == 2 ? Colors.green : Colors.white70,
                     elevation: toggle == 2 ? 30 : 5,
                     child: Center(
-                        child: Text( response['questionList'][0]["options2"],
+                        child: Text( response['questionList'][index]["options2"],
                             style: GoogleFonts.merriweather(
                               fontSize: 15,
                             ))),
@@ -159,7 +164,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     color: toggle == 3 ? Colors.green : Colors.white70,
                     elevation: toggle == 3 ? 30 : 5,
                     child: Center(
-                        child: Text( response['questionList'][0]["options3"],
+                        child: Text( response['questionList'][index]["options3"],
                             style: GoogleFonts.merriweather(
                               fontSize: 15,
                             ))),
@@ -175,7 +180,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     color: toggle == 4 ? Colors.green : Colors.white70,
                     elevation: toggle == 4 ? 30 : 5,
                     child: Center(
-                        child: Text( response['questionList'][0]["options4"],
+                        child: Text( response['questionList'][index]["options4"],
                             style: GoogleFonts.merriweather(
                               fontSize: 15,
                             ))),
