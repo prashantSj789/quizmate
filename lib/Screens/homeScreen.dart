@@ -31,8 +31,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           color: Colors.blue,
         ),
         child: Center(
-          child: CircleAvatar(child: Icon(Icons.person),radius: 40
-          ,),
+          child: CircleAvatar(radius: 40
+          ,child: Icon(Icons.person),),
         ),
       ),
      SizedBox(
@@ -40,8 +40,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
       ),
       Center(
         child: ListTile(
-          leading: Icon(Icons.settings),
-          title:  Text('Edit Profile'),
+          leading: const Icon(Icons.settings),
+          title:  const Text('Edit Profile'),
           onTap: () {
           },
         ),
@@ -51,10 +51,10 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
       ),
       Center(
         child: ListTile(
-          leading: Icon(Icons.logout),
+          leading: const Icon(Icons.logout),
           title: const Text('LogOut'),
           onTap: () {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LoginScreen()));
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const LoginScreen()));
           },
         ),
       ),
@@ -79,7 +79,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
               height: height*0.45,
               width: width*0.95,
             ),
-            SizedBox(
+            const SizedBox(
            height: 10,
             ),
             Column(
@@ -89,13 +89,13 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                 children: [SizedBox(width: width*0.5,height: height*0.2,child: Card(shadowColor: Colors.black ,color: Colors.blueAccent,child: 
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CustomQuizScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const CustomQuizScreen()));
                   },
                   child: Stack(
                     children: [
                      Center(child: Opacity(opacity: 0.1,
                      child: Image.asset("assets/clipboard-question-icon.png",fit: BoxFit.fill,))),
-                     Center(child: Text("Attempt Quiz",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
+                     const Center(child: Text("Attempt Quiz",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
                     ],
                   ),
                 ),),),
@@ -104,7 +104,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                   children: [
                    Center(child: Opacity(opacity: 0.1,
                    child: Image.asset("assets/dashboard.png",fit: BoxFit.fill,))),
-                   Center(child: Text("DashBoard",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
+                   const Center(child: Text("DashBoard",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
                   ],
                 ) ,),),
                 ],
@@ -115,14 +115,14 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                   children: [
                    Center(child: Opacity(opacity: 0.1,
                    child: Image.asset("assets/ranking.png",fit: BoxFit.fill,))),
-                   Center(child: Text("RanKings",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
+                   const Center(child: Text("RanKings",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
                   ],
                 ),),),
                 SizedBox(width: width*0.5,height: height*0.2,child: Card(shadowColor: Colors.black ,color: Colors.pinkAccent,child: Stack(
                   children: [
                    Center(child: Opacity(opacity: 0.1,
                    child: Image.asset("assets/video.png",fit: BoxFit.fill,))),
-                   Center(child: Text("Resources",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
+                   const Center(child: Text("Resources",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
                   ],
                 ),),),
                 ],
