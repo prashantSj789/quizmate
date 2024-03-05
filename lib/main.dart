@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Deo',
       
-      home:CustomQuizScreen(),
+      home:MainHomeScreen(),
     );
   }
 }

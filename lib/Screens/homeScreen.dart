@@ -62,77 +62,79 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
     ],
   ),
       ),
-      body:  Stack(
-        children:[
-           Container(
-              alignment: Alignment.center,
-              height: height*0.45,
-              width: width*0.95,
-              child: Lottie.asset("assets/Animation - 1705686383000.json"),
-            ), 
-          Column(
-            
-          children: [
-            
-            Container(
-              alignment: Alignment.center,
-              height: height*0.45,
-              width: width*0.95,
-            ),
-            const SizedBox(
-           height: 10,
-            ),
+      body:  SingleChildScrollView(
+        child: Stack(
+          children:[
+             Container(
+                alignment: Alignment.center,
+                height: height*0.45,
+                width: width*0.95,
+                child: Lottie.asset("assets/Animation - 1705686383000.json"),
+              ), 
             Column(
-             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [SizedBox(width: width*0.5,height: height*0.2,child: Card(shadowColor: Colors.black ,color: Colors.blueAccent,child: 
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const CustomQuizScreen()));
-                  },
-                  child: Stack(
+              
+            children: [
+              
+              Container(
+                alignment: Alignment.center,
+                height: height*0.45,
+                width: width*0.95,
+              ),
+              const SizedBox(
+             height: 10,
+              ),
+              Column(
+               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [SizedBox(width: width*0.5,height: height*0.2,child: Card(shadowColor: Colors.black ,color: Colors.blueAccent,child: 
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const CustomQuizScreen()));
+                    },
+                    child: Stack(
+                      children: [
+                       Center(child: Opacity(opacity: 0.1,
+                       child: Image.asset("assets/clipboard-question-icon.png",fit: BoxFit.fill,))),
+                       const Center(child: Text("Attempt Quiz",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
+                      ],
+                    ),
+                  ),),),
+                  SizedBox(width: width*0.5,height: height*0.2,child: Card(shadowColor: Colors.black ,color: Colors.amberAccent,
+                  child:Stack(
                     children: [
                      Center(child: Opacity(opacity: 0.1,
-                     child: Image.asset("assets/clipboard-question-icon.png",fit: BoxFit.fill,))),
-                     const Center(child: Text("Attempt Quiz",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
+                     child: Image.asset("assets/dashboard.png",fit: BoxFit.fill,))),
+                     const Center(child: Text("DashBoard",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
                     ],
-                  ),
-                ),),),
-                SizedBox(width: width*0.5,height: height*0.2,child: Card(shadowColor: Colors.black ,color: Colors.amberAccent,
-                child:Stack(
-                  children: [
-                   Center(child: Opacity(opacity: 0.1,
-                   child: Image.asset("assets/dashboard.png",fit: BoxFit.fill,))),
-                   const Center(child: Text("DashBoard",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
+                  ) ,),),
                   ],
-                ) ,),),
-                ],
-              ),
-               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [SizedBox(width: width*0.5,height: height*0.2,child: Card(shadowColor: Colors.black ,color: Colors.purpleAccent,child: Stack(
-                  children: [
-                   Center(child: Opacity(opacity: 0.1,
-                   child: Image.asset("assets/ranking.png",fit: BoxFit.fill,))),
-                   const Center(child: Text("RanKings",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
+                ),
+                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [SizedBox(width: width*0.5,height: height*0.2,child: Card(shadowColor: Colors.black ,color: Colors.purpleAccent,child: Stack(
+                    children: [
+                     Center(child: Opacity(opacity: 0.1,
+                     child: Image.asset("assets/ranking.png",fit: BoxFit.fill,))),
+                     const Center(child: Text("RanKings",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
+                    ],
+                  ),),),
+                  SizedBox(width: width*0.5,height: height*0.2,child: Card(shadowColor: Colors.black ,color: Colors.pinkAccent,child: Stack(
+                    children: [
+                     Center(child: Opacity(opacity: 0.1,
+                     child: Image.asset("assets/video.png",fit: BoxFit.fill,))),
+                     const Center(child: Text("Resources",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
+                    ],
+                  ),),),
                   ],
-                ),),),
-                SizedBox(width: width*0.5,height: height*0.2,child: Card(shadowColor: Colors.black ,color: Colors.pinkAccent,child: Stack(
-                  children: [
-                   Center(child: Opacity(opacity: 0.1,
-                   child: Image.asset("assets/video.png",fit: BoxFit.fill,))),
-                   const Center(child: Text("Resources",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),)
-                  ],
-                ),),),
-                ],
+                )
+               ],
               )
-             ],
-            )
-           
-          ],
+             
+            ],
+          ),
+          ]
         ),
-        ]
       )
     );
   }

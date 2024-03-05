@@ -11,7 +11,7 @@ class QuestionRepository {
   Future<dynamic> fetchquestion(String category1,int e1,int m1,int h1) async {
     var headers = {'Content-Type': 'application/json', 'X-API-Key': '123445'};
     var data = json.encode([
-      {"category": "$category1", "easy": e1, "medium": m1, "hard":h1},
+      {"category": category1, "easy": e1, "medium": m1, "hard":h1},
      
     ]);
     var dio = Dio();
