@@ -5,8 +5,12 @@ import 'package:lottie/lottie.dart';
 import 'package:quiz_app/Screens/QuizScreen.dart';
 
 class QuizSplashScreen extends StatefulWidget {
-  const QuizSplashScreen({super.key});
+   QuizSplashScreen({super.key,required this.category1,required this.e, required this.m, required this.h});
+  String category1;
 
+  int e;
+  int m;
+  int h;
   @override
   State<QuizSplashScreen> createState() => _QuizSplashScreenState();
 }
@@ -15,7 +19,7 @@ class _QuizSplashScreenState extends State<QuizSplashScreen> {
     @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 5), () {Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const QuizScreen() ));});
+    Timer(const Duration(seconds: 5), () {Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> QuizScreen(category1: widget.category1, e: widget.e, m: widget.m, h: widget.h,) ));});
   }
   @override
   Widget build(BuildContext context) {
