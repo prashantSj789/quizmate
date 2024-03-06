@@ -16,7 +16,7 @@ class QuestionRepository {
     ]);
     var dio = Dio();
     var response = await dio.request(
-      'http://15.206.90.238:8080/question/customQuiz',
+      '$baseUrl:8080/question/customQuiz',
       options: Options(
         method: 'POST',
         headers: headers,
