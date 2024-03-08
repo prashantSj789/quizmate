@@ -19,13 +19,13 @@ class _CustomQuizScreenState extends State<CustomQuizScreen> {
  int easy= 1;
  int medium=1;
  int hard =1;
- TextEditingController cat = new  TextEditingController();
-  TextEditingController e = new  TextEditingController();
-  TextEditingController m = new  TextEditingController();
-   TextEditingController h = new TextEditingController();
+ TextEditingController cat = TextEditingController();
+  TextEditingController e = TextEditingController();
+  TextEditingController m =  TextEditingController();
+   TextEditingController h = TextEditingController();
    void givevalues(){
     print("enter");
-    //  print(cat.text.toString());
+      print(cat.text.toString());
    category= cat.text.toString();
    easy=int.parse(e.text.toString());
    medium=int.parse(m.text.toString());
