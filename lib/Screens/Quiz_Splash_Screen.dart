@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:quiz_app/Screens/QuizScreen.dart';
@@ -7,7 +6,6 @@ import 'package:quiz_app/Screens/QuizScreen.dart';
 class QuizSplashScreen extends StatefulWidget {
    QuizSplashScreen({super.key,required this.category1,required this.e, required this.m, required this.h});
   String category1;
-
   int e;
   int m;
   int h;

@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Deo',
       
-      home:MainHomeScreen(),
+      home:LoginScreen(),
     );
   }
 }

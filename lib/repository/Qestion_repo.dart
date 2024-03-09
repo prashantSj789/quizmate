@@ -8,7 +8,8 @@ import 'package:http/http.dart' as http;
 
 
 class QuestionRepository {
-  Future<dynamic> fetchquestion(String category1,int e1,int m1,int h1) async {
+  Future<Question_Paper_Model> fetchquestion(String category1,int e1,int m1,int h1) async {
+    Question_Paper_Model question_paper_model ;
     var headers = {'Content-Type': 'application/json', 'X-API-Key': '123445'};
     var data = json.encode([
       {"category": category1, "easy": e1, "medium": m1, "hard":h1},
@@ -16,7 +17,7 @@ class QuestionRepository {
     ]);
     var dio = Dio();
     var response = await dio.request(
-      '$baseUrl:8080/question/customQuiz',
+      '$baseUrl/question/customQuiz',
       options: Options(
         method: 'POST',
         headers: headers,
@@ -25,8 +26,10 @@ class QuestionRepository {
     );
 
     if (response.statusCode == 200) {
-      // print(json.encode(response.data));
-      return (response.data);
+       //print(json.encode(response.data));
+      question_paper_model= Question_Paper_Model.fromJson(response.data);
+      print(question_paper_model.questionList?.elementAt(0).question);
+      return question_paper_model;
     } else {
       print(response.statusMessage);
       throw Exception('failed to load Questions');
