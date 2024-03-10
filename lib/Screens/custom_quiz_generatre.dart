@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:quiz_app/Screens/QuizScreen.dart';
+import 'package:quiz_app/Screens/Quiz_Splash_Screen.dart';
 import 'package:quiz_app/repository/Qestion_repo.dart';
 
 class CustomQuizScreen extends StatefulWidget {
@@ -108,7 +109,7 @@ class CustomQuizScreenState extends State<CustomQuizScreen> {
               height: 50,
               width: width,
               child: ElevatedButton(onPressed: (){
-               Navigator.of(context).push(MaterialPageRoute(builder: (context)=>QuizScreen(category1: category, e: easy, m: medium, h: hard)));
+               Navigator.of(context).push(MaterialPageRoute(builder: (context)=>QuizSplashScreen(category1: category, e: easy, m: medium, h: hard)));
               },child:   Text("Start"),),
             ),
 

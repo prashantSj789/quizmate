@@ -75,7 +75,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
               alignment: Alignment.center,
               height: height * 0.45,
               width: width * 0.95,
-              child: Lottie.asset("assets/Animation - 1705686383000.json"),
+              child:  Lottie.asset("assets/Animation - 1705686383000.json"),
             ),
             Column(
               children: [

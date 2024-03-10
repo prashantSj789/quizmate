@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/dummydata/dummy.dart';
 import 'package:quiz_app/models/Question_Paper_model.dart';
@@ -99,7 +100,9 @@ Question_Paper_Model response = new Question_Paper_Model();
               GoogleFonts.rye(color: Colors.black, fontWeight: FontWeight.bold),
         )),
       ),
-      body: Column(
+      body: response.questionList==null?Center(
+        child: SpinKitChasingDots(color: Colors.blueAccent),
+      ):Column(
         children: [
           response==null?
           const Center(child: CircularProgressIndicator()):
