@@ -40,12 +40,12 @@ class _LoginScreenState extends State<LoginScreen> {
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
-        userName=usernamecontroller.text.toString();
-        email=emailController.text.toString();
-        password=passwordController.text.toString();
+      String  userName=usernamecontroller.text.toString();
+      String   email=emailController.text.toString();
+      String  password=passwordController.text.toString();
         print(await response.stream.bytesToString());
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const MainHomeScreen()));
+            MaterialPageRoute(builder: (context) =>  MainHomeScreen(username: userName, password: password, email: email,)));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

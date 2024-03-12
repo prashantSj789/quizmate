@@ -36,7 +36,7 @@ Question_Paper_Model response = new Question_Paper_Model();
 
     response = await repo1.fetchquestion(widget.category1,widget.e,widget.m,widget.h);
 
-     print(response.questionList);
+     //print(response.questionList);
      
     setState(() {
       

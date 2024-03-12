@@ -12,9 +12,9 @@ var headers = {
   'X-API-Key': '{{token}}'
 };
 var data = json.encode({
-  "userName": userName,
-  "email": email,
-  "password": password
+  "userName": 'Shubhang-Shukla',
+  "email": 'shubhangshukla001@gmail.com',
+  "password": '123456789'
 });
 var dio = Dio();
 var response = await dio.request(

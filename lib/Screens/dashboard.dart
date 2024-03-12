@@ -5,8 +5,10 @@ import 'package:quiz_app/const.dart';
 import 'package:quiz_app/repository/user_repo.dart';
 
 class DashBoard extends StatefulWidget {
-  const DashBoard({super.key});
-
+  const DashBoard({super.key, required this.username, required this.password, required this.email});
+   final String username;
+ final String password;
+ final String email;
   @override
   State<DashBoard> createState() => _DashBoardState();
 }
