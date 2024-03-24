@@ -33,11 +33,15 @@ Question_Paper_Model response = new Question_Paper_Model();
   void callfunction() async {
     print('questions called');
     QuestionRepository repo1 = QuestionRepository();
-
+    int totalmarks=0;
     response = await repo1.fetchquestion(widget.category1,widget.e,widget.m,widget.h);
 
-     //print(response.questionList);
-     
+    for(int i =0;i<response.questionList!.length;i++)
+    {
+      totalmarks= totalmarks+ int.parse(response.questionList!.elementAt(i).marks.toString());
+    }
+    print(totalmarks);
+    print(response.questionList!.length);
     setState(() {
       
     });
