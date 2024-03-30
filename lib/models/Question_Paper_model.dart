@@ -48,7 +48,7 @@ class QuestionList {
       this.options4,
       this.category,
       this.topic,
-      this.marks,
+      this.marks, 
       this.difficulty});
 
   QuestionList.fromJson(Map<String, dynamic> json) {
