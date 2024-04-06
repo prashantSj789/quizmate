@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:quiz_app/dummydata/dummy.dart';
 import 'package:quiz_app/models/Question_Paper_model.dart';
 import 'package:quiz_app/repository/Qestion_repo.dart';
@@ -19,9 +21,10 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
+   List <Map<String,dynamic>> responseList=[];
   List list = object;
   int toggle = 0;
-
+  int maximumMarks=0;
 Question_Paper_Model response = new Question_Paper_Model();
 
   @override
@@ -31,6 +34,7 @@ Question_Paper_Model response = new Question_Paper_Model();
   }
 
   void callfunction() async {
+ 
     print('questions called');
     QuestionRepository repo1 = QuestionRepository();
     int totalmarks=0;
@@ -40,7 +44,7 @@ Question_Paper_Model response = new Question_Paper_Model();
     {
       totalmarks= totalmarks+ int.parse(response.questionList!.elementAt(i).marks.toString());
     }
-    print(totalmarks);
+    maximumMarks=totalmarks;
     print(response.questionList!.length);
     setState(() {
       
@@ -51,12 +55,14 @@ Question_Paper_Model response = new Question_Paper_Model();
   void optionchoose1() {
     setState(() {
       toggle = 1;
+
     });
   }
 
   void optionchoose2() {
     setState(() {
       toggle = 2;
+
     });
   }
 
@@ -89,7 +95,40 @@ Question_Paper_Model response = new Question_Paper_Model();
       });
     }
   }
+  void submit()
+  {
+ responseList.add({
+  "id":response.questionList!.elementAt(index).id,
+  "rightOption":toggle
+ });
+  }
+  Future<void> Finish()
+  async {
+ var headers = {
+  'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYXJzaC0xMjM0NTY3ODkiLCJpYXQiOjE3MTA1OTY5ODcsImV4cCI6MTcxMDU5ODE4N30.wbu6_oRp6qhCEjxue3GsLdVqeCKgT9mLvE5e7ZRyreXqY8A1cYgRL_fV3JYUEkXTQJwvJM1xW2fQFD23WXyGfQ',
+  'Content-Type': 'application/json',
+  'X-API-Key': '{{token}}'
+};
+var request = http.Request('POST', Uri.parse('http://43.205.68.79:8080/user/response'));
+request.body = json.encode({
+  "responseList": responseList,
+  "totalQuestion": response.questionList?.length,
+  "maximumMarks": maximumMarks,
+  "category": widget.category1
+});
+request.headers.addAll(headers);
 
+http.StreamedResponse resp = await request.send();
+
+if (resp.statusCode == 200) {
+  print(await resp.stream.bytesToString());
+}
+else {
+  print(resp.reasonPhrase);
+  
+}
+
+  }
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
@@ -220,9 +259,9 @@ Question_Paper_Model response = new Question_Paper_Model();
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ElevatedButton(onPressed: () {}, child: const Text("Submit")),
+              ElevatedButton(onPressed: submit, child: const Text("Submit")),
               ElevatedButton(
-                  onPressed: () {}, child: const Text("Finish Quiz")),
+                  onPressed: Finish, child: const Text("Finish Quiz")),
             ],
           )
         ],
