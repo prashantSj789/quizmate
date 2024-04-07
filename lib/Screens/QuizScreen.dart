@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:quiz_app/dummydata/dummy.dart';
 import 'package:quiz_app/models/Question_Paper_model.dart';
 import 'package:quiz_app/repository/Qestion_repo.dart';
+import 'package:quiz_app/repository/user_repo.dart';
 
 class QuizScreen extends StatefulWidget {
   QuizScreen({super.key,required this.category1,required this.e,required this.m,required this.h});
@@ -25,6 +26,7 @@ class _QuizScreenState extends State<QuizScreen> {
   List list = object;
   int toggle = 0;
   int maximumMarks=0;
+   UserRepository userrepo = new UserRepository();
 Question_Paper_Model response = new Question_Paper_Model();
 
   @override
@@ -104,30 +106,10 @@ Question_Paper_Model response = new Question_Paper_Model();
   }
   Future<void> Finish()
   async {
- var headers = {
-  'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYXJzaC0xMjM0NTY3ODkiLCJpYXQiOjE3MTA1OTY5ODcsImV4cCI6MTcxMDU5ODE4N30.wbu6_oRp6qhCEjxue3GsLdVqeCKgT9mLvE5e7ZRyreXqY8A1cYgRL_fV3JYUEkXTQJwvJM1xW2fQFD23WXyGfQ',
-  'Content-Type': 'application/json',
-  'X-API-Key': '{{token}}'
-};
-var request = http.Request('POST', Uri.parse('http://43.205.68.79:8080/user/response'));
-request.body = json.encode({
-  "responseList": responseList,
-  "totalQuestion": response.questionList?.length,
-  "maximumMarks": maximumMarks,
-  "category": widget.category1
-});
-request.headers.addAll(headers);
-
-http.StreamedResponse resp = await request.send();
-
-if (resp.statusCode == 200) {
-  print(await resp.stream.bytesToString());
-}
-else {
-  print(resp.reasonPhrase);
-  
-}
-
+    print(responseList);
+    int totalQuestion = response.questionList!.length;
+  Future  token = userrepo.fetchUserDetails();
+  userrepo.responsesunbmit(token.toString(), totalQuestion, maximumMarks, responseList, widget.category1);
   }
   @override
   Widget build(BuildContext context) {
@@ -143,7 +125,7 @@ else {
               GoogleFonts.rye(color: Colors.black, fontWeight: FontWeight.bold),
         )),
       ),
-      body: response.questionList==null?Center(
+      body: response.questionList==null?const Center(
         child: SpinKitChasingDots(color: Colors.blueAccent),
       ):Column(
         children: [

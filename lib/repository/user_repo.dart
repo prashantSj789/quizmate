@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:dio/dio.dart';
 import 'package:quiz_app/api/userapi.dart';
@@ -29,8 +30,7 @@ print("Response code =${response.statusCode}");
 
 if (response.statusCode == 200) {
   print('completed');
-  // print(json.encode(response.data));
-  // print(response.data['token']);
+
   return response.data['token'];
 }
 else {
@@ -40,7 +40,7 @@ else {
 
 
 
-Future<dynamic> fetchUserDetails1( String token1) async {
+Future<dynamic> fetchUserDetails1( String token1,) async {
   var headers = {
   'Authorization': 'Bearer $token1',
   'Content-Type': 'application/json',
@@ -77,6 +77,37 @@ var response = await dio.request(
 if (response.statusCode == 200) {
   print(json.encode(response.data));
   return response.data;
+}
+else {
+  print(response.statusMessage);
+}
+}
+void responsesunbmit(String token,int totalQuestion,int maximumMarks,List<Map<String,dynamic>> list,String category)
+ async {
+var headers = {
+  'Authorization': 'Bearer $token',
+  'Content-Type': 'application/json',
+  'X-API-Key': '{{token}}'
+};
+var data = json.encode({
+  "responseList": list,
+  "totalQuestion": totalQuestion,
+  "maximumMarks": maximumMarks,
+  "category": category
+});
+print(jsonDecode(data).toString());
+var dio = Dio();
+var response = await dio.request(
+  '$baseUrl/user/response',
+  options: Options(
+    method: 'POST',
+    headers: headers,
+  ),
+  data: data,
+);
+
+if (response.statusCode == 200) {
+  print(json.encode(response.data));
 }
 else {
   print(response.statusMessage);
