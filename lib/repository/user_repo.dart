@@ -4,9 +4,11 @@ import 'dart:ffi';
 import 'package:dio/dio.dart';
 import 'package:quiz_app/api/userapi.dart';
 import 'package:quiz_app/const.dart';
+import 'package:quiz_app/models/user_model.dart';
 
 class UserRepository{
-Future<dynamic> fetchUserDetails() async {
+Future<user_model> fetchUserDetails() async {
+  user_model User_Model;
   print('entered');
 var headers = {
   'Content-Type': 'application/json',
@@ -30,11 +32,12 @@ print("Response code =${response.statusCode}");
 
 if (response.statusCode == 200) {
   print('completed');
-
-  return response.data['token'];
+  User_Model=user_model.fromJson(response.data);
+  return User_Model;
 }
 else {
   print(response.statusMessage);
+   throw Exception('failed to load user data');
 }
 }
 
@@ -114,3 +117,4 @@ else {
 }
 }
 }
+

@@ -32,7 +32,7 @@ class _DashBoardState extends State<DashBoard> {
     print('enter');
 
     UserRepository repo = UserRepository();
-    response = await repo.fetchUserDetails();
+    response = await repo.fetchUserDetails;
     token = response.toString();
 
     response1 = await repo.fetchUserDetails1(token);
