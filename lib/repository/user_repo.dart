@@ -4,6 +4,7 @@ import 'dart:ffi';
 import 'package:dio/dio.dart';
 import 'package:quiz_app/api/userapi.dart';
 import 'package:quiz_app/const.dart';
+import 'package:quiz_app/models/Score_Card_Model.dart';
 import 'package:quiz_app/models/user_model.dart';
 
 class UserRepository{
@@ -85,8 +86,9 @@ else {
   print(response.statusMessage);
 }
 }
-void responsesunbmit(String token,int totalQuestion,int maximumMarks,List<Map<String,dynamic>> list,String category)
+Future<Score_Card_Model> responsesunbmit(String token,int totalQuestion,int maximumMarks,List<Map<String,dynamic>> list,String category)
  async {
+ Score_Card_Model scorecard;
 var headers = {
   'Authorization': 'Bearer $token',
   'Content-Type': 'application/json',
@@ -110,10 +112,14 @@ var response = await dio.request(
 );
 
 if (response.statusCode == 200) {
-  print(json.encode(response.data));
+  //print(json.encode(response.data));
+  scorecard=Score_Card_Model.fromJson(response.data);
+  print(scorecard.responseList.toString());
+  return scorecard;
 }
 else {
   print(response.statusMessage);
+  throw Exception('failed to submit response');
 }
 }
 }

@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:quiz_app/Screens/ScoreCard.dart';
 
 import 'package:quiz_app/dummydata/dummy.dart';
 import 'package:quiz_app/models/Question_Paper_model.dart';
+import 'package:quiz_app/models/Score_Card_Model.dart';
 import 'package:quiz_app/models/user_model.dart';
 import 'package:quiz_app/repository/Qestion_repo.dart';
 import 'package:quiz_app/repository/user_repo.dart';
@@ -30,6 +32,7 @@ class _QuizScreenState extends State<QuizScreen> {
    
 Question_Paper_Model response = new Question_Paper_Model();
 user_model token = new user_model();
+Score_Card_Model scorecard = new Score_Card_Model();
 
   @override
   void initState() {
@@ -112,7 +115,9 @@ user_model token = new user_model();
     UserRepository userrepo = new UserRepository();
     token = await userrepo.fetchUserDetails() ;
     print(token.token);
-    userrepo.responsesunbmit(token.token.toString(), response.questionList!.length, maximumMarks, responseList, widget.category1);
+    scorecard= await userrepo.responsesunbmit(token.token.toString(), response.questionList!.length, maximumMarks, responseList, widget.category1);
+    print(scorecard.responseList!.elementAt(0).question);
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>ScoreCardScreen( scorecard: scorecard,)));
     
   }
   @override
