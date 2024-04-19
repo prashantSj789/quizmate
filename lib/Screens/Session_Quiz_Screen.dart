@@ -1,63 +1,42 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
-import 'package:quiz_app/Screens/ScoreCard.dart';
-
-import 'package:quiz_app/models/Question_Paper_model.dart';
-import 'package:quiz_app/models/Score_Card_Model.dart';
+import 'package:quiz_app/models/SessionModel.dart';
 import 'package:quiz_app/models/user_model.dart';
-import 'package:quiz_app/repository/Qestion_repo.dart';
+import 'package:quiz_app/repository/session_repo.dart';
 import 'package:quiz_app/repository/user_repo.dart';
 
-class QuizScreen extends StatefulWidget {
-  QuizScreen({super.key,required this.category1,required this.e,required this.m,required this.h});
-  String category1;
+class Session_Quiz_Screen extends StatefulWidget {
+   Session_Quiz_Screen({super.key,required this.Session_Id,required this.Session_user_Id});
+  String Session_Id;
+  String Session_user_Id;
 
-  int e;
-  int m;
-  int h;
   @override
-  State<QuizScreen> createState() => _QuizScreenState();
+  State<Session_Quiz_Screen> createState() => __Session_Quiz_ScreenState();
 }
 
-class _QuizScreenState extends State<QuizScreen> {
-   List <Map<String,dynamic>> responseList=[];
+class __Session_Quiz_ScreenState extends State<Session_Quiz_Screen> {
+  Session_Model response = new Session_Model();
+  int index=0;
   int toggle = 0;
-  int maximumMarks=0;
-   
-Question_Paper_Model response = new Question_Paper_Model();
-user_model token = new user_model();
-Score_Card_Model scorecard = new Score_Card_Model();
-
   @override
   void initState() {
+    // TODO: implement initState
     callfunction();
     super.initState();
   }
-
-  void callfunction() async {
- 
-    print('questions called');
-    QuestionRepository repo1 = QuestionRepository();
-    int totalmarks=0;
-    response = await repo1.fetchquestion(widget.category1,widget.e,widget.m,widget.h);
-
-    for(int i =0;i<response.questionList!.length;i++)
-    {
-      totalmarks= totalmarks+ int.parse(response.questionList!.elementAt(i).marks.toString());
-    }
-    maximumMarks=totalmarks;
-    print(response.questionList!.length);
-    setState(() {
-      
-    });
+  void callfunction()async {
+   print('session fetched');
+   Session_Repository repo1 = new Session_Repository();
+   UserRepository repo2 = new UserRepository();
+   user_model token = new user_model();
+   token  = await repo2.fetchUserDetails();
+   response= await repo1.fetchsession(token.token.toString(),widget.Session_Id);
+   setState(() {
+     
+   });
   }
-
-  int index = 0;
-  void optionchoose1() {
+    void optionchoose1() {
     setState(() {
       toggle = 1;
 
@@ -84,7 +63,7 @@ Score_Card_Model scorecard = new Score_Card_Model();
   }
 
   void nextQuestion() {
-    if (index != response.questionList!.length-1) {
+    if (index != response.sessionQuestionList!.length-1) {
       setState(() {
         index++;
         toggle = 0;
@@ -100,24 +79,6 @@ Score_Card_Model scorecard = new Score_Card_Model();
       });
     }
   }
-  void submit()
-  {
- responseList.add({
-  "id":response.questionList!.elementAt(index).id,
-  "rightOption":toggle
- });
-  }
-   void Finish()
-  async {
-    print(responseList);
-    UserRepository userrepo = new UserRepository();
-    token = await userrepo.fetchUserDetails() ;
-    print(token.token);
-    scorecard= await userrepo.responsesunbmit(token.token.toString(), response.questionList!.length, maximumMarks, responseList, widget.category1);
-    print(scorecard.responseList!.elementAt(0).question);
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>ScoreCardScreen( scorecard: scorecard,)));
-    
-  }
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
@@ -132,7 +93,7 @@ Score_Card_Model scorecard = new Score_Card_Model();
               GoogleFonts.rye(color: Colors.black, fontWeight: FontWeight.bold),
         )),
       ),
-      body: response.questionList==null?const Center(
+      body:  response.sessionQuestionList==null?const Center(
         child: SpinKitChasingDots(color: Colors.blueAccent),
       ):Column(
         children: [
@@ -145,7 +106,7 @@ Score_Card_Model scorecard = new Score_Card_Model();
               elevation: 5,
               child: Center(
                   child: Text(
-                    response.questionList!.elementAt(index).question.toString(),
+                    response.sessionQuestionList!.elementAt(index).question.toString(),
                 style: GoogleFonts.merriweather(
                     fontSize: 20, fontWeight: FontWeight.bold),
               )),
@@ -166,7 +127,7 @@ Score_Card_Model scorecard = new Score_Card_Model();
                     color: toggle == 1 ? Colors.green : Colors.white70,
                     elevation: toggle == 1 ? 30 : 5,
                     child: Center(
-                      child: Text(  response.questionList!.elementAt(index).options1.toString(),
+                      child: Text(  response.sessionQuestionList!.elementAt(index).options1.toString(),
                               style: GoogleFonts.merriweather(
                                 fontSize: 15,
                               )),
@@ -183,7 +144,7 @@ Score_Card_Model scorecard = new Score_Card_Model();
                     color: toggle == 2 ? Colors.green : Colors.white70,
                     elevation: toggle == 2 ? 30 : 5,
                     child: Center(
-                        child: Text( response.questionList!.elementAt(index).options2.toString(),
+                        child: Text( response.sessionQuestionList!.elementAt(index).options2.toString(),
                             style: GoogleFonts.merriweather(
                               fontSize: 15,
                             ))),
@@ -199,7 +160,7 @@ Score_Card_Model scorecard = new Score_Card_Model();
                     color: toggle == 3 ? Colors.green : Colors.white70,
                     elevation: toggle == 3 ? 30 : 5,
                     child: Center(
-                        child: Text(response.questionList!.elementAt(index).options3.toString(),
+                        child: Text(response.sessionQuestionList!.elementAt(index).options3.toString(),
                             style: GoogleFonts.merriweather(
                               fontSize: 15,
                             ))),
@@ -215,7 +176,7 @@ Score_Card_Model scorecard = new Score_Card_Model();
                     color: toggle == 4 ? Colors.green : Colors.white70,
                     elevation: toggle == 4 ? 30 : 5,
                     child: Center(
-                        child: Text(response.questionList!.elementAt(index).options4.toString(),
+                        child: Text(response.sessionQuestionList!.elementAt(index).options4.toString(),
                             style: GoogleFonts.merriweather(
                               fontSize: 15,
                             ))),
@@ -248,9 +209,9 @@ Score_Card_Model scorecard = new Score_Card_Model();
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ElevatedButton(onPressed: submit, child: const Text("Submit")),
+              ElevatedButton(onPressed: (){}, child: const Text("Submit")),
               ElevatedButton(
-                  onPressed: Finish, child: const Text("Finish Quiz")),
+                  onPressed: (){}, child: const Text("Finish Quiz")),
             ],
           )
         ],

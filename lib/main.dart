@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/Screens/QuizScreen.dart';
 import 'package:quiz_app/Screens/ScoreCard.dart';

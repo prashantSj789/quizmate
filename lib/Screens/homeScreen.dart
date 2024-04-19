@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+
 import 'package:quiz_app/Screens/custom_quiz_generatre.dart';
 import 'package:quiz_app/Screens/dashboard.dart';
+import 'package:quiz_app/Screens/join_session_screen.dart';
 import 'package:quiz_app/Screens/loginscreen.dart';
+import 'package:quiz_app/Screens/session_screen.dart';
+
 
 class MainHomeScreen extends StatefulWidget {
   const MainHomeScreen({super.key, required this.username, required this.password, required this.email});
@@ -15,6 +19,7 @@ class MainHomeScreen extends StatefulWidget {
 }
 
 class _MainHomeScreenState extends State<MainHomeScreen> {
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
@@ -170,56 +175,66 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         SizedBox(
                           width: width * 0.5,
                           height: height * 0.2,
-                          child: Card(
-                            shadowColor: Colors.black,
-                            color: Colors.purpleAccent,
-                            child: Stack(
-                              children: [
-                                Center(
-                                    child: Opacity(
-                                        opacity: 0.1,
-                                        child: Image.asset(
-                                          "assets/ranking.png",
-                                          fit: BoxFit.fill,
-                                        ))),
-                                const Center(
-                                  child: Text(
-                                    "RanKings",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20),
-                                  ),
-                                )
-                              ],
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>JoinSessionscreen()));
+                            },
+                            child: Card(
+                              shadowColor: Colors.black,
+                              color: Colors.purpleAccent,
+                              child: Stack(
+                                children: [
+                                  Center(
+                                      child: Opacity(
+                                          opacity: 0.1,
+                                          child: Image.asset(
+                                            "assets/ranking.png",
+                                            fit: BoxFit.fill,
+                                          ))),
+                                  const Center(
+                                    child: Text(
+                                      "Join a Session",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
                         SizedBox(
                           width: width * 0.5,
                           height: height * 0.2,
-                          child: Card(
-                            shadowColor: Colors.black,
-                            color: Colors.pinkAccent,
-                            child: Stack(
-                              children: [
-                                Center(
-                                    child: Opacity(
-                                        opacity: 0.1,
-                                        child: Image.asset(
-                                          "assets/video.png",
-                                          fit: BoxFit.fill,
-                                        ))),
-                                const Center(
-                                  child: Text(
-                                    "Resources",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20),
-                                  ),
-                                )
-                              ],
+                          child: InkWell(
+                            onTap: (){
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SessionCreateScreen()));
+                            },
+                            child: Card(
+                              shadowColor: Colors.black,
+                              color: Colors.pinkAccent,
+                              child: Stack(
+                                children: [
+                                  Center(
+                                      child: Opacity(
+                                          opacity: 0.1,
+                                          child: Image.asset(
+                                            "assets/video.png",
+                                            fit: BoxFit.fill,
+                                          ))),
+                                  const Center(
+                                    child: Text(
+                                      "Create Session",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
