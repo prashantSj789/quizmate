@@ -6,6 +6,7 @@ import 'package:quiz_app/Screens/registerscreen.dart';
 import 'package:http/http.dart' as http;
 import 'package:quiz_app/api/userapi.dart';
 import 'package:quiz_app/const.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,12 +16,15 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+ 
   // ignore: non_constant_identifier_names
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController usernamecontroller = TextEditingController();
 
   void loginuser() async {
+    final storage = FlutterSecureStorage();
     if (usernamecontroller.text.isNotEmpty &&
         emailController.text.isNotEmpty &&
         passwordController.text.isNotEmpty) {
@@ -40,12 +44,15 @@ class _LoginScreenState extends State<LoginScreen> {
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
-      String  userName=usernamecontroller.text.toString();
-      String   email=emailController.text.toString();
-      String  password=passwordController.text.toString();
+         userName=usernamecontroller.text.toString();
+       email=emailController.text.toString();
+        password=passwordController.text.toString();
+       await storage.write(key: 'userName',value: userName);
+       await storage.write(key: 'email',value: email);
+       await storage.write(key: 'password',value: password);
         print(await response.stream.bytesToString());
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) =>  MainHomeScreen(username: userName, password: password, email: email,)));
+            MaterialPageRoute(builder: (context) =>  MainHomeScreen()));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

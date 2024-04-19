@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/Screens/Session_ScoreCard.dart';
 import 'package:quiz_app/models/SessionModel.dart';
+import 'package:quiz_app/models/session_scorecard_model.dart';
 import 'package:quiz_app/models/user_model.dart';
 import 'package:quiz_app/repository/session_repo.dart';
 import 'package:quiz_app/repository/user_repo.dart';
@@ -16,7 +18,9 @@ class Session_Quiz_Screen extends StatefulWidget {
 }
 
 class __Session_Quiz_ScreenState extends State<Session_Quiz_Screen> {
+   List <Map<String,dynamic>> responseList=[];
   Session_Model response = new Session_Model();
+  Session_Score_card scorecard = new Session_Score_card();
   int index=0;
   int toggle = 0;
   @override
@@ -35,6 +39,25 @@ class __Session_Quiz_ScreenState extends State<Session_Quiz_Screen> {
    setState(() {
      
    });
+  }
+  void submit()
+  {
+ responseList.add({
+  "id":response.sessionQuestionList!.elementAt(index).id,
+  "rightOption":toggle
+ });
+  }
+     void Finish()
+  async {
+    print(responseList);
+    UserRepository userrepo = new UserRepository();
+    Session_Repository repo1 = new Session_Repository();
+    user_model token = new user_model();
+    token = await userrepo.fetchUserDetails() ;
+    print(token.token);
+    scorecard= await repo1.submitsessionrespone(token.token.toString(), widget.Session_Id, widget.Session_user_Id, responseList);
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Session_ScoreCard_Screen(session_score_card: scorecard,)));
+    
   }
     void optionchoose1() {
     setState(() {
@@ -209,9 +232,9 @@ class __Session_Quiz_ScreenState extends State<Session_Quiz_Screen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ElevatedButton(onPressed: (){}, child: const Text("Submit")),
+              ElevatedButton(onPressed: submit, child: const Text("Submit")),
               ElevatedButton(
-                  onPressed: (){}, child: const Text("Finish Quiz")),
+                  onPressed: Finish, child: const Text("Finish Quiz")),
             ],
           )
         ],

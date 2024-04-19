@@ -7,13 +7,12 @@ import 'package:quiz_app/Screens/dashboard.dart';
 import 'package:quiz_app/Screens/join_session_screen.dart';
 import 'package:quiz_app/Screens/loginscreen.dart';
 import 'package:quiz_app/Screens/session_screen.dart';
+import 'package:quiz_app/const.dart';
 
 
 class MainHomeScreen extends StatefulWidget {
-  const MainHomeScreen({super.key, required this.username, required this.password, required this.email});
- final String username;
- final String password;
- final String email;
+   MainHomeScreen({super.key, });
+
   @override
   State<MainHomeScreen> createState() => _MainHomeScreenState();
 }
@@ -140,7 +139,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                           child: InkWell(
                             onTap: () =>  Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) =>
-                                       DashBoard(username: widget.username, password: widget.password, email: widget.email,))),
+                                       DashBoard(username:userName, password: password, email: email,))),
                             child: Card(
                               shadowColor: Colors.black,
                               color: Colors.amberAccent,

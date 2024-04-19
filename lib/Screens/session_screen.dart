@@ -83,7 +83,7 @@ class _SessionCreateScreenState extends State<SessionCreateScreen> {
   'X-API-Key': '{{token}}',
   'Cookie': 'JSESSIONID=B9008C3D6177D56C7126163CCE571606'
 };
-var request = http.Request('POST', Uri.parse('http://43.205.68.79:8080/session/createSession'));
+var request = http.Request('POST', Uri.parse('http://34.72.47.13/session/createSession'));
 request.body = json.encode({
   "delayDuration": delayduration,
   "duration": Duration,
@@ -99,15 +99,12 @@ if (response.statusCode == 200) {
  String st = await response.stream.bytesToString();
 
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(st,style: TextStyle(fontWeight: FontWeight.bold),)));
-  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>MainHomeScreen(username: "lajs", password: password, email: email)));
+  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>MainHomeScreen()));
 }
 else {
   print(response.reasonPhrase);
 }
-
-
-
-   
+ 
   }
   @override
   var formkey = GlobalKey<FormState>();

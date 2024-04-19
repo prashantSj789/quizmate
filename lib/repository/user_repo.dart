@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:ffi';
-
 import 'package:dio/dio.dart';
 import 'package:quiz_app/api/userapi.dart';
 import 'package:quiz_app/const.dart';
@@ -8,6 +7,7 @@ import 'package:quiz_app/models/Score_Card_Model.dart';
 import 'package:quiz_app/models/user_model.dart';
 
 class UserRepository{
+ 
 Future<user_model> fetchUserDetails() async {
   user_model User_Model;
   print('entered');
@@ -16,9 +16,9 @@ var headers = {
   'X-API-Key': '{{token}}'
 };
 var data = json.encode({
-  "userName": 'Shubhang-Shukla',
-  "email": 'shubhangshukla001@gmail.com',
-  "password": '123456789'
+  "userName": userName,
+  "email":    email,
+  "password": password,
 });
 var dio = Dio();
 var response = await dio.request(
