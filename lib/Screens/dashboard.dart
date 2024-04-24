@@ -1,8 +1,9 @@
+import 'dart:core';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/Screens/myquiz.dart';
 import 'package:quiz_app/const.dart';
-import 'package:quiz_app/models/user_model.dart';
 import 'package:quiz_app/repository/user_repo.dart';
 
 class DashBoard extends StatefulWidget {
@@ -31,10 +32,13 @@ class _DashBoardState extends State<DashBoard> {
 
   Future<void> callfunction() async {
     print('enter');
-    user_model respose = new user_model();
+
     UserRepository repo = UserRepository();
-    response= await repo.fetchUserDetails();
-     result = await repo.fetchUserDetails1(respose.token.toString(),int.parse(respose.userId.toString()));
+    response = await repo.fetchUserDetails;
+    token = response.toString();
+
+    response1 = await repo.fetchUserDetails1(token);
+    result=response1['resultList'];
     print(result);
 
     setState(() {});
@@ -48,9 +52,9 @@ class _DashBoardState extends State<DashBoard> {
             child: Text(
           "DashBoard",
           style:
-              GoogleFonts.poppins( fontWeight: FontWeight.bold,color:Colors.white),
+              GoogleFonts.rye(color: Colors.black, fontWeight: FontWeight.bold),
         )),
-        
+        backgroundColor: Colors.blueAccent,
       ),
       // body: Center(
       //   child: Container(
@@ -135,7 +139,7 @@ class InfoTile extends StatelessWidget {
             Text(
               content,
               style: const TextStyle(
-               color:Colors.white,
+                color: Colors.black,
                 // fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.w400,
               ),

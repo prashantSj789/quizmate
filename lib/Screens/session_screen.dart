@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,7 +21,6 @@ class SessionCreateScreen extends StatefulWidget {
 }
 
 class _SessionCreateScreenState extends State<SessionCreateScreen> {
-  DateTime dateTime = DateTime(2024,6,12,5,30);
   Session_Repository session_repository = new Session_Repository(); 
   UserRepository repo = new UserRepository();
   List<Map<String,dynamic>>SessionUserlist=[];
@@ -72,9 +72,7 @@ class _SessionCreateScreenState extends State<SessionCreateScreen> {
   }
   void Create_Session()
   async{ 
-   var currentTime=DateTime.now();
-    var diffmin= currentTime.difference(dateTime).inMinutes;
-    int delayduration= diffmin;
+    int delayduration= int.parse(delay.text.toString());
     int Duration = int.parse(duration.text.toString());
     String Title = title.text.toString();
     user_model token = new user_model() ;
@@ -86,7 +84,7 @@ class _SessionCreateScreenState extends State<SessionCreateScreen> {
   'X-API-Key': '{{token}}',
   'Cookie': 'JSESSIONID=B9008C3D6177D56C7126163CCE571606'
 };
-var request = http.Request('POST', Uri.parse('http://43.205.68.79/session/createSession'));
+var request = http.Request('POST', Uri.parse('http://34.72.47.13/session/createSession'));
 request.body = json.encode({
   "delayDuration": delayduration,
   "duration": Duration,
@@ -120,9 +118,9 @@ else {
               child: Text(
             "Welcome!!",
             style: GoogleFonts.rye(
-               fontWeight: FontWeight.bold),
+                color: Colors.black, fontWeight: FontWeight.bold),
           )),
-          
+          backgroundColor: Colors.blueAccent,
       ),
       body:  ListView(
       children: [
@@ -143,9 +141,15 @@ else {
               controller: title,
             ),
              const SizedBox(height: 30,),
-              ElevatedButton(onPressed: ()async{
-                pickDateTime();
-              }, child: Text('${dateTime.year}/${dateTime.month}/${dateTime.day}::${dateTime.hour}:${dateTime.minute}')),
+               TextFormField(
+              decoration: InputDecoration(
+                hintText: "Delay Duration",
+                labelText: "Delay Duration",
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(30))
+              ),
+              controller: delay,
+              keyboardType: TextInputType.number,
+            ),
                const SizedBox(height: 30,),
               TextFormField(
               decoration: InputDecoration(
@@ -307,29 +311,4 @@ else {
     ],),
     );
   }
-  Future pickDateTime() async {
-   DateTime? date = await pickdate();
-   if(date==null) return;
-   TimeOfDay? time = await pickTime();
-                if(time==null)
-                return;
-                final newDateTime = DateTime(
-                 date.year,
-                 date.month,
-                 date.day,
-                 time.hour,
-                 time.minute,
-                );
-                setState(() {
-                  dateTime = newDateTime;
-                });
-  }
-  Future<DateTime?> pickdate() => showDatePicker(context: context,
-   initialDate: dateTime,
-   firstDate: DateTime(1900),
-   lastDate: DateTime(2100)
-   );
-
-   Future<TimeOfDay?> pickTime() => showTimePicker(context: context, 
-   initialTime: TimeOfDay(hour: dateTime.hour, minute: dateTime.minute));
 }
