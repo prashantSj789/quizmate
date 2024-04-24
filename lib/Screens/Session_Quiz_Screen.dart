@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,7 +27,6 @@ class __Session_Quiz_ScreenState extends State<Session_Quiz_Screen> {
   int toggle = 0;
   @override
   void initState() {
-    // TODO: implement initState
     callfunction();
     super.initState();
   }
@@ -36,6 +37,9 @@ class __Session_Quiz_ScreenState extends State<Session_Quiz_Screen> {
    user_model token = new user_model();
    token  = await repo2.fetchUserDetails();
    response= await repo1.fetchsession(token.token.toString(),widget.Session_Id);
+  Timer(Duration(minutes: int.parse(response.duration.toString())), () {
+      Finish();
+     });
    setState(() {
      
    });

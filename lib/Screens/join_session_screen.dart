@@ -24,7 +24,7 @@ class _JoinSessionscreenState extends State<JoinSessionscreen> {
   'Authorization': 'Bearer ${token.token.toString()}',
   'X-API-Key': '{{token}}'
 };
-var request = http.Request('GET', Uri.parse('http://34.72.47.13/session/session/${sid.text.toString()}'));
+var request = http.Request('GET', Uri.parse('http://43.205.68.79/session/session/${sid.text.toString()}'));
 
 request.headers.addAll(headers);
 

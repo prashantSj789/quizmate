@@ -73,7 +73,7 @@ class _SessionCreateScreenState extends State<SessionCreateScreen> {
   void Create_Session()
   async{ 
    var currentTime=DateTime.now();
-    var diffmin= currentTime.difference(dateTime).inMinutes;
+    var diffmin= dateTime.difference(currentTime).inMinutes;
     int delayduration= diffmin;
     int Duration = int.parse(duration.text.toString());
     String Title = title.text.toString();
