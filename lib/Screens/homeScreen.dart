@@ -5,20 +5,20 @@ import 'package:lottie/lottie.dart';
 import 'package:quiz_app/Screens/custom_quiz_generatre.dart';
 import 'package:quiz_app/Screens/dashboard.dart';
 import 'package:quiz_app/Screens/join_session_screen.dart';
-import 'package:quiz_app/Screens/loginscreen.dart';
 import 'package:quiz_app/Screens/session_screen.dart';
 import 'package:quiz_app/const.dart';
-
+import 'package:quiz_app/widgets/drawer.dart';
 
 class MainHomeScreen extends StatefulWidget {
-   MainHomeScreen({super.key, });
+  MainHomeScreen({
+    super.key,
+  });
 
   @override
   State<MainHomeScreen> createState() => _MainHomeScreenState();
 }
 
 class _MainHomeScreenState extends State<MainHomeScreen> {
-
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
@@ -29,53 +29,12 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
               child: Text(
             "Welcome!!",
             style: GoogleFonts.poppins(
-              fontWeight: FontWeight.bold,
-              color:Colors.white,
-              fontSize:30),
+                fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
           )),
-         iconTheme: IconThemeData(color:Colors.white),
+          iconTheme: IconThemeData(color: Colors.white),
         ),
-        drawer: Drawer(
-          child: ListView(
-            // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
-            children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 42, 27, 61),
-                ),
-                child: Center(
-                  child: CircleAvatar(
-                    radius: 40,
-                    child: Icon(Icons.person),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: height * 0.05,
-              ),
-              Center(
-                child: ListTile(
-                  leading: const Icon(Icons.settings),
-                  title: const Text('Edit Profile'),
-                  onTap: () {},
-                ),
-              ),
-              SizedBox(
-                height: height * 0.05,
-              ),
-              Center(
-                child: ListTile(
-                  leading: const Icon(Icons.logout),
-                  title: const Text('LogOut'),
-                  onTap: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const LoginScreen()));
-                  },
-                ),
-              ),
-            ],
-          ),
+        drawer: const Drawer(
+          child: DrawerBox(),
         ),
         body: SingleChildScrollView(
           child: Stack(children: [
@@ -83,7 +42,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
               alignment: Alignment.center,
               height: height * 0.45,
               width: width * 0.95,
-              child:  Lottie.asset("assets/Animation - 1705686383000.json"),
+              child: Lottie.asset("assets/Animation - 1705686383000.json"),
             ),
             Column(
               children: [
@@ -139,9 +98,13 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                           width: width * 0.5,
                           height: height * 0.2,
                           child: InkWell(
-                            onTap: () =>  Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                       DashBoard(username:userName, password: password, email: email,))),
+                            onTap: () =>
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => DashBoard(
+                                          username: userName,
+                                          password: password,
+                                          email: email,
+                                        ))),
                             child: Card(
                               shadowColor: Colors.black,
                               color: Colors.amberAccent,
@@ -178,7 +141,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                           height: height * 0.2,
                           child: InkWell(
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>JoinSessionscreen()));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => JoinSessionscreen()));
                             },
                             child: Card(
                               shadowColor: Colors.black,
@@ -210,8 +174,9 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                           width: width * 0.5,
                           height: height * 0.2,
                           child: InkWell(
-                            onTap: (){
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SessionCreateScreen()));
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => SessionCreateScreen()));
                             },
                             child: Card(
                               shadowColor: Colors.black,

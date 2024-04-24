@@ -4,13 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/Screens/myquiz.dart';
 import 'package:quiz_app/const.dart';
+import 'package:quiz_app/models/user_model.dart';
 import 'package:quiz_app/repository/user_repo.dart';
 
 class DashBoard extends StatefulWidget {
-  const DashBoard({super.key, required this.username, required this.password, required this.email});
-   final String username;
- final String password;
- final String email;
+  const DashBoard(
+      {super.key,
+      required this.username,
+      required this.password,
+      required this.email});
+  final String username;
+  final String password;
+  final String email;
   @override
   State<DashBoard> createState() => _DashBoardState();
 }
@@ -18,7 +23,7 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   var response;
   var response1;
-  List<dynamic> result = [];
+  var result;
 
   @override
   @override
@@ -32,15 +37,14 @@ class _DashBoardState extends State<DashBoard> {
 
   Future<void> callfunction() async {
     print('enter');
-
+    user_model respose = user_model();
     UserRepository repo = UserRepository();
-    response = await repo.fetchUserDetails;
-    token = response.toString();
-
-    response1 = await repo.fetchUserDetails1(token);
-    result=response1['resultList'];
+    response = await repo.fetchUserDetails();
+    print(respose.token.toString());
+    print(respose.userId!.toInt());
+    result = await repo.fetchUserDetails1(
+        respose.token.toString(), respose.userId!.toInt());
     print(result);
-
     setState(() {});
   }
 
@@ -78,7 +82,7 @@ class _DashBoardState extends State<DashBoard> {
                 ),
               ),
               InfoTile(
-                content: response1['userName'],
+                content: result.userame.toString(),
                 tileName: "Name: ",
               ),
               InfoTile(
