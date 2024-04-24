@@ -19,7 +19,7 @@ var headers = {
 };
 var dio = Dio();
 var response = await dio.request(
-  'http://34.72.47.13/session/session/${SessionId}',
+  'http://43.205.68.79/session/session/${SessionId}',
   options: Options(
     method: 'GET',
     headers: headers,
@@ -51,7 +51,7 @@ var data = json.encode({
 });
 var dio = Dio();
 var response = await dio.request(
-  'http://34.72.47.13/session/sessionResponse',
+  'http://43.205.68.79/session/sessionResponse',
   options: Options(
     method: 'POST',
     headers: headers,

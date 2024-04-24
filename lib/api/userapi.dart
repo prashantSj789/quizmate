@@ -1,4 +1,4 @@
 String registration = '$baseUrl/user/createUser';
 String login = '$baseUrl/user/auth';
 
-String baseUrl = 'http://34.72.47.13';
+String baseUrl = 'http://43.205.68.79';

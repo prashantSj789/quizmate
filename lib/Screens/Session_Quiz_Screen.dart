@@ -108,7 +108,7 @@ class __Session_Quiz_ScreenState extends State<Session_Quiz_Screen> {
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
+       
         title: Center(
             child: Text(
           "All the Best",
@@ -117,7 +117,7 @@ class __Session_Quiz_ScreenState extends State<Session_Quiz_Screen> {
         )),
       ),
       body:  response.sessionQuestionList==null?const Center(
-        child: SpinKitChasingDots(color: Colors.blueAccent),
+        child: SpinKitChasingDots(color: Color.fromARGB(255, 42, 27, 61)),
       ):Column(
         children: [
           response==null?

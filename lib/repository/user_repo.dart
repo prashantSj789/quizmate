@@ -44,38 +44,20 @@ else {
 
 
 
-Future<dynamic> fetchUserDetails1( String token1,) async {
+Future<dynamic> fetchUserDetails1( String token1,int userId) async {
   var headers = {
   'Authorization': 'Bearer $token1',
   'Content-Type': 'application/json',
   'X-API-Key': '{{token}}'
 };
-var data = json.encode({
-  "responseList": [
-    {
-      "id": 21,
-      "rightAnswer": "Through method overloading and overriding"
-    },
-    {
-      "id": 22,
-      "rightAnswer": "It refers to the current instance of the object"
-    },
-    {
-      "id": 23,
-      "rightAnswer": "It is the starting point of every Java programdgfsgs"
-    }
-  ],
-  "totalQuestion": 5,
-  "category": "Java"
-});
+
 var dio = Dio();
 var response = await dio.request(
-  '$baseUrl/user/user/503',
+  '$baseUrl/user/user/${userId}',
   options: Options(
     method: 'GET',
     headers: headers,
   ),
-  data: data,
 );
 
 if (response.statusCode == 200) {

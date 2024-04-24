@@ -47,7 +47,7 @@ else {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
+     
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -56,6 +56,7 @@ else {
             decoration: InputDecoration(
               labelText: "Session Id",
               hintText: "Session Id",
+              labelStyle: TextStyle(color: Colors.white),
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(30))
             ),
             controller: sid,
@@ -67,6 +68,7 @@ else {
             decoration: InputDecoration(
               labelText: "Session user Id",
               hintText: "Session user Id",
+              labelStyle: TextStyle(color: Colors.white),
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(30))
             ),
             controller: suid,

@@ -14,7 +14,7 @@ class _Session_ScoreCard_ScreenState extends State<Session_ScoreCard_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("ScoreCard",style: GoogleFonts.rye(fontWeight:FontWeight.bold),),backgroundColor: Colors.blueAccent,),
+      appBar: AppBar(title: Text("ScoreCard",style: GoogleFonts.rye(fontWeight:FontWeight.bold),),),
       body: widget.session_score_card==null?Center(
         child: SpinKitCircle(color: Colors.amberAccent,),
       ):SingleChildScrollView(

@@ -42,7 +42,7 @@ class CustomQuizScreenState extends State<CustomQuizScreen> {
       var height = MediaQuery.sizeOf(context).height;
        var width = MediaQuery.sizeOf(context).width;
     return Scaffold(
-  appBar: AppBar(title: Text("Generate Your Quiz",style: GoogleFonts.rye(fontWeight: FontWeight.bold,fontSize: 17) ,),backgroundColor: Colors.blueAccent,),
+  appBar: AppBar(title: Text("Generate Your Quiz",),),
   body: ListView(
     children: [
       Container(
@@ -58,6 +58,7 @@ class CustomQuizScreenState extends State<CustomQuizScreen> {
               decoration: InputDecoration(
                 hintText: "Category",
                 labelText: "Category",
+                labelStyle: TextStyle(color: Colors.black),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(30))
               ),
               validator: (value) {
@@ -75,6 +76,7 @@ class CustomQuizScreenState extends State<CustomQuizScreen> {
               decoration: InputDecoration(
                 hintText: "easy questions",
                 labelText: "easy questions",
+                labelStyle: TextStyle(color: Colors.black),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(30))
               ),
               keyboardType: TextInputType.number,
@@ -85,6 +87,7 @@ class CustomQuizScreenState extends State<CustomQuizScreen> {
               decoration: InputDecoration(
                 hintText: "medium questions",
                 labelText: "medium questions",
+                labelStyle: TextStyle(color: Colors.black),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(30))
               ),
               keyboardType: TextInputType.number,
@@ -95,6 +98,7 @@ class CustomQuizScreenState extends State<CustomQuizScreen> {
               decoration: InputDecoration(
                 hintText: "hard  questions",
                 labelText: "hard questions",
+                labelStyle: TextStyle(color: Colors.black),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(30))
               ),
               keyboardType: TextInputType.number,

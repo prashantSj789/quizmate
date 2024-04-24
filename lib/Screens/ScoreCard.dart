@@ -13,8 +13,8 @@ class ScoreCardScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("ScoreCard",
-        style: GoogleFonts.rye(color: Colors.black, fontWeight: FontWeight.bold),),
-        backgroundColor: Colors.blueAccent,
+        style: GoogleFonts.rye( fontWeight: FontWeight.bold),),
+      
       ),
       body: scorecard==null?Center(
         child: SpinKitCircle(color: Colors.blueAccent,),
@@ -24,19 +24,19 @@ class ScoreCardScreen extends StatelessWidget {
             Center(
               child: Column(
                children: [
-                Text("maximum marks : ${scorecard.result!.maximumMarks.toString()}",style:GoogleFonts.rye(color: Colors.black, fontWeight: FontWeight.bold) ,),
+                Text("maximum marks : ${scorecard.result!.maximumMarks.toString()}",style:GoogleFonts.rye( fontWeight: FontWeight.bold) ,),
                 SizedBox(height: 10,), 
-                Text("total mark : ${scorecard.result!.totalMarks.toString()}",style: GoogleFonts.rye(color: Colors.black, fontWeight: FontWeight.bold),),
+                Text("total mark : ${scorecard.result!.totalMarks.toString()}",style: GoogleFonts.rye( fontWeight: FontWeight.bold),),
                 SizedBox(height: 10,),
-                Text("total Questions : ${scorecard.result!.totalQuestion.toString()}",style: GoogleFonts.rye(color: Colors.black, fontWeight: FontWeight.bold),),
+                Text("total Questions : ${scorecard.result!.totalQuestion.toString()}",style: GoogleFonts.rye( fontWeight: FontWeight.bold),),
                 SizedBox(height: 10,),
-                Text("Questions Attempted : ${scorecard.result!.totalAttemptQuestion.toString()}",style: GoogleFonts.rye(color: Colors.black, fontWeight: FontWeight.bold),),
+                Text("Questions Attempted : ${scorecard.result!.totalAttemptQuestion.toString()}",style: GoogleFonts.rye( fontWeight: FontWeight.bold),),
                 SizedBox(height: 10,),
-                Text("Not Attempted questions : ${scorecard.result!.nonAttemptQuestion.toString()}",style: GoogleFonts.rye(color: Colors.black, fontWeight: FontWeight.bold),),
+                Text("Not Attempted questions : ${scorecard.result!.nonAttemptQuestion.toString()}",style: GoogleFonts.rye( fontWeight: FontWeight.bold),),
                 SizedBox(height: 10,),
-                Text("Right Answer : ${scorecard.result!.rightAnswer.toString()}",style: GoogleFonts.rye(color: Colors.black, fontWeight: FontWeight.bold),),
+                Text("Right Answer : ${scorecard.result!.rightAnswer.toString()}",style: GoogleFonts.rye( fontWeight: FontWeight.bold),),
                 SizedBox(height: 10,),
-                Text("Wrong Answer : ${scorecard.result!.wrongAnswer.toString()}",style: GoogleFonts.rye(color: Colors.black, fontWeight: FontWeight.bold),),
+                Text("Wrong Answer : ${scorecard.result!.wrongAnswer.toString()}",style: GoogleFonts.rye( fontWeight: FontWeight.bold),),
                 SizedBox(height: 10,),                                                                                                            
                ],
               ),

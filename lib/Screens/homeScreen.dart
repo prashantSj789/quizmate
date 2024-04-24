@@ -28,10 +28,12 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           title: Center(
               child: Text(
             "Welcome!!",
-            style: GoogleFonts.rye(
-                color: Colors.black, fontWeight: FontWeight.bold),
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.bold,
+              color:Colors.white,
+              fontSize:30),
           )),
-          backgroundColor: Colors.blueAccent,
+         iconTheme: IconThemeData(color:Colors.white),
         ),
         drawer: Drawer(
           child: ListView(
@@ -40,7 +42,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
             children: [
               const DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Color.fromARGB(255, 42, 27, 61),
                 ),
                 child: Center(
                   child: CircleAvatar(

@@ -82,7 +82,7 @@ else {
 
               const SizedBox(height: 120,),
               const Center(
-              child: Text("Enter your Credentials to register !!",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17,color: Colors.black),),
+              child: Text("Enter your Credentials to register !!",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17,),),
               ),
                const SizedBox(height: 30,),
                TextField(controller: usernamecontroller,decoration: InputDecoration(hintText:"user name",border: OutlineInputBorder(

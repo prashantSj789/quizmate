@@ -111,7 +111,7 @@ Score_Card_Model scorecard = new Score_Card_Model();
   async {
     print(responseList);
     UserRepository userrepo = new UserRepository();
-    token = await userrepo.fetchUserDetails() ;
+    token = await userrepo.fetchUserDetails();
     print(token.token);
     scorecard= await userrepo.responsesunbmit(token.token.toString(), response.questionList!.length, maximumMarks, responseList, widget.category1);
     print(scorecard.responseList!.elementAt(0).question);
@@ -124,12 +124,12 @@ Score_Card_Model scorecard = new Score_Card_Model();
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
+    
         title: Center(
             child: Text(
           "All the Best",
           style:
-              GoogleFonts.rye(color: Colors.black, fontWeight: FontWeight.bold),
+              GoogleFonts.rye( fontWeight: FontWeight.bold),
         )),
       ),
       body: response.questionList==null?const Center(
