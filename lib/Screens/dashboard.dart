@@ -157,7 +157,7 @@ class InfoTile extends StatelessWidget {
 }
 
 class CustomTile extends StatelessWidget {
-  const CustomTile({
+  CustomTile({
     super.key,
     required this.title,
     required this.route,
