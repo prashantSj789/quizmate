@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/models/Dash_Board_Model.dart';
 
 class MyQuizes extends StatelessWidget {
   const MyQuizes({
@@ -7,7 +8,7 @@ class MyQuizes extends StatelessWidget {
     required this.resultList,
   });
 
-  final List<dynamic> resultList;
+  final List<ResultList> resultList;
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +17,8 @@ class MyQuizes extends StatelessWidget {
         title: Center(
             child: Text(
           "My Quizes",
-          style:
-              GoogleFonts.rye(color: Colors.black, fontWeight: FontWeight.bold),
         )),
-        backgroundColor: Colors.blueAccent,
+    
       ),
       body: Column(
         children: [
@@ -29,26 +28,25 @@ class MyQuizes extends StatelessWidget {
             child: ListView.builder(
               itemCount: resultList.length,
               itemBuilder: (context, index) {
-                var res = resultList[index];
                 var quiznumber= index+1;
-                var totalQuestion = res['totalQuestion'];
-                var totalAttemptQuestion = res['totalAttemptQuestion'];
-                var nonAttemptQuestion = res['nonAttemptQuestion'];
-                var rightAnswer = res['rightAnswer'];
-                var wrongAnswer = res['wrongAnswer'];
-                var category = res['category'];
-                var totalMarks = res['totalMarks'];
-                var timeStamp = res['timeStamp'];
+                var totalQuestion = resultList.elementAt(index).totalQuestion;
+                var totalAttemptQuestion = resultList.elementAt(index).totalAttemptQuestion;
+                var nonAttemptQuestion = resultList.elementAt(index).nonAttemptQuestion;
+                var rightAnswer = resultList.elementAt(index).rightAnswer;
+                var wrongAnswer = resultList.elementAt(index).wrongAnswer;
+                var category = resultList.elementAt(index).category;
+                var totalMarks = resultList.elementAt(index).totalMarks;
+                var timeStamp = resultList.elementAt(index).timeStamp;
                 return Expansion(
                   quizNumber: quiznumber,
-                  totalQuestion: totalQuestion,
-                  totalAttemptQuestion: totalAttemptQuestion,
-                  nonAttemptQuestion: nonAttemptQuestion,
-                  rightAnswer: rightAnswer,
-                  wrongAnswer: wrongAnswer,
-                  category: category,
-                  totalMarks: totalMarks,
-                  timeStamp: timeStamp,
+                  totalQuestion: int.parse(totalQuestion.toString()),
+                  totalAttemptQuestion: int.parse(totalAttemptQuestion.toString()),
+                  nonAttemptQuestion: int.parse(nonAttemptQuestion.toString()),
+                  rightAnswer: int.parse(rightAnswer.toString()),
+                  wrongAnswer: int.parse(wrongAnswer.toString()),
+                  category: category.toString(),
+                  totalMarks: int.parse(totalMarks.toString()),
+                  timeStamp: timeStamp.toString(),
                 );
               },
             ),
@@ -72,14 +70,14 @@ class Expansion extends StatefulWidget {
       required this.totalMarks,
       required this.timeStamp});
   
-  final num quizNumber;
-  final num totalQuestion;
-  final num totalAttemptQuestion;
-  final num nonAttemptQuestion;
-  final num rightAnswer;
-  final num wrongAnswer;
+  final int  quizNumber;
+  final int  totalQuestion;
+  final int totalAttemptQuestion;
+  final int nonAttemptQuestion;
+  final int rightAnswer;
+  final int wrongAnswer;
   final String category;
-  final num totalMarks;
+  final int totalMarks;
   final String timeStamp;
 
   @override

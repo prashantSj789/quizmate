@@ -3,7 +3,9 @@ import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/Screens/myquiz.dart';
+import 'package:quiz_app/Screens/mysession.dart';
 import 'package:quiz_app/const.dart';
+import 'package:quiz_app/models/Dash_Board_Model.dart';
 import 'package:quiz_app/models/user_model.dart';
 import 'package:quiz_app/repository/user_repo.dart';
 
@@ -21,30 +23,25 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-  var response;
-  var response1;
-  var result;
+  DashBoardModel mydashboard=new DashBoardModel();
 
   @override
   @override
   void initState() {
     super.initState();
 
-    Future.delayed(Duration.zero, () {
       callfunction();
-    });
+  
   }
 
-  Future<void> callfunction() async {
+    void callfunction() async {
     print('enter');
     user_model respose = user_model();
     UserRepository repo = UserRepository();
-    response = await repo.fetchUserDetails();
+    respose = await repo.fetchUserDetails();
     print(respose.token.toString());
     print(respose.userId!.toInt());
-    result = await repo.fetchUserDetails1(
-        respose.token.toString(), respose.userId!.toInt());
-    print(result);
+    mydashboard = await repo.fetchUserDetails1(respose.token.toString(),int.parse(respose.userId.toString()));
     setState(() {});
   }
 
@@ -58,54 +55,58 @@ class _DashBoardState extends State<DashBoard> {
           style:
               GoogleFonts.rye(color: Colors.black, fontWeight: FontWeight.bold),
         )),
-        backgroundColor: Colors.blueAccent,
+
       ),
       // body: Center(
       //   child: Container(
       //     decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20))),
       //     child: Image.network('https://pics.craiyon.com/2023-08-06/7bc5b0ccdd4d4576a03ecd52815ae1bc.webp')),
       // ),
-      body: response1 != null
-          ? Column(children: [
-              Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: const Center(
-                  child: CircleAvatar(
-                    radius: 45,
-                    backgroundColor: Colors.black,
-                    child: Icon(
-                      Icons.person,
-                      size: 70,
-                      color: Colors.white,
+      body: mydashboard.resultList != null
+          ? SingleChildScrollView(
+            child: Column(children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 20),
+                  child: const Center(
+                    child: CircleAvatar(
+                      radius: 45,
+                      backgroundColor: Colors.black,
+                      child: Icon(
+                        Icons.person,
+                        size: 70,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              InfoTile(
-                content: result.userame.toString(),
-                tileName: "Name: ",
-              ),
-              InfoTile(
-                content: response1['email'],
-                tileName: "EMail: ",
-              ),
-              InfoTile(
-                content: response1['totalMarks'].toString(),
-                tileName: "Total Marks: ",
-              ),
-              InfoTile(
-                content: response1['userRank'].toString(),
-                tileName: "User Rank: ",
-              ),
-              CustomTile(
-                title: "Quizes List",
-                route: MyQuizes(resultList: response1['resultList']),
-              ),
-              CustomTile(
-                title: "Session List",
-                route: MyQuizes(resultList: result),
-              ),
-            ])
+                InfoTile(tileName: "UserId:",
+                content: mydashboard.id.toString(),),
+                InfoTile(
+                  content: mydashboard.userName,
+                  tileName: "Name: ",
+                ),
+                InfoTile(
+                  content: mydashboard.email,
+                  tileName: "EMail: ",
+                ),
+                InfoTile(
+                  content: mydashboard.totalMarks.toString(),
+                  tileName: "Total Marks: ",
+                ),
+                InfoTile(
+                  content: mydashboard.userRank.toString(),
+                  tileName: "User Rank: ",
+                ),
+                CustomTile(
+                  title: "Quizes List",
+                  route: MyQuizes(resultList: mydashboard.resultList!),
+                ),
+                CustomTile(
+                  title: "Session List",
+                  route: MySession(  sessionlist: mydashboard.sessionList!,),
+                ),
+              ]),
+          )
           : const Center(child: CircularProgressIndicator()),
     );
   }

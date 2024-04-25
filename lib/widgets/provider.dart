@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UiProvider extends ChangeNotifier {
@@ -11,6 +12,10 @@ class UiProvider extends ChangeNotifier {
 
   //Custom dark theme setting
   final darkTheme = ThemeData(
+    appBarTheme: AppBarTheme(
+      backgroundColor: Color.fromARGB(255, 42, 27, 61),
+      titleTextStyle: GoogleFonts.poppins(color:Colors.white,fontWeight:FontWeight.bold)
+    ),
     primaryColor: Colors.black12,
     brightness: Brightness.dark,
     primaryColorDark: Colors.black12,

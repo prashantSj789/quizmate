@@ -3,6 +3,7 @@ import 'dart:core';
 import 'package:dio/dio.dart';
 import 'package:quiz_app/api/userapi.dart';
 import 'package:quiz_app/const.dart';
+import 'package:quiz_app/models/Dash_Board_Model.dart';
 import 'package:quiz_app/models/Score_Card_Model.dart';
 import 'package:quiz_app/models/user_model.dart';
 
@@ -41,7 +42,8 @@ class UserRepository {
     }
   }
 
-  Future<dynamic> fetchUserDetails1(String token1, int userId) async {
+  Future<DashBoardModel> fetchUserDetails1(String token1, int userId) async {
+    DashBoardModel dashBoardModel = new DashBoardModel();
     print('enter fetchUser1');
     var headers = {
       'Authorization': 'Bearer $token1',
@@ -59,10 +61,12 @@ class UserRepository {
     );
 
     if (response.statusCode == 200) {
-      print(json.encode(response.data));
-      return response.data;
+      print(DashBoardModel.fromJson(response.data));
+      dashBoardModel=DashBoardModel.fromJson(response.data);
+      return dashBoardModel;
     } else {
       print(response.statusMessage);
+      throw Exception("failed to Load your dashboard");
     }
   }
 

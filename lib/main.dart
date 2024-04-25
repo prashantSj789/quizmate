@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
             themeMode: notifier.isDark? ThemeMode.dark : ThemeMode.light,
 
             darkTheme: notifier.isDark? notifier.darkTheme : notifier.lightTheme,
+            
             theme: ThemeData(
               appBarTheme: AppBarTheme(
                 backgroundColor: const Color.fromARGB(255, 42, 27, 61),
