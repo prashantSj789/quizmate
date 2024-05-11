@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app/Screens/loginscreen.dart';
+import 'package:quiz_app/webs/whatsaapweb.dart';
 import 'package:quiz_app/widgets/provider.dart';
 
 class DrawerBox extends StatefulWidget {
@@ -62,6 +63,16 @@ class _DrawerBoxState extends State<DrawerBox> {
                 onTap: () {
                   Navigator.of(context).pushReplacement(
                       MaterialPageRoute(builder: (context) => const LoginScreen()));
+                },
+              ),
+            ),
+                        Center(
+              child: ListTile(
+                leading: const Icon(Icons.message),
+                title: const Text('Contact Us'),
+                onTap: () {
+                whatsaapchat chat = new whatsaapchat();
+                chat.contactUsLaunchWhatsapp();
                 },
               ),
             ),
